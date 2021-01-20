@@ -21,8 +21,10 @@ def prikaz_svih_knjiga():
         po_ceni()
     elif m == 6:
         return
+    else:
+        print("Izabrali ste nepostojecu opciju")
 
-
+prikaz_svih_knjiga()
 def po_naslovu_knjige():
     x = ucitaj_knjige()
     z = 0
