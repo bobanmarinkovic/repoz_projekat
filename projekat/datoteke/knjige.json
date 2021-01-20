@@ -1,6 +1,36 @@
 [
   {
-    "x": '123'
-    "z": '321'
+    "Sifra": "111",
+    "Naslov": "Kula",
+    "Isbn": "4785123974851",
+    "Autor": "Nikola Lukic",
+    "Izdavac": "Vulkan",
+    "Broj_strana": 420,
+    "Godina": 2020,
+    "Cena": 1500.00,
+    "Kategorija": "Komedija"
+
+  },
+  {
+    "Sifra": "222",
+    "Naslov": "Invictus",
+    "Isbn": "4785123974784",
+    "Autor": "Paco Rabanne",
+    "Izdavac": "Laguna",
+    "Broj_strana": 119,
+    "Godina": 2009,
+    "Cena": 999.99,
+    "Kategorija": "Istorija"
+  },
+  {
+    "Sifra": "123",
+    "Naslov": "Moj fudbalski klub",
+    "Isbn": "99955123974784",
+    "Autor": "Lionel Messi",
+    "Izdavac": "Laguna",
+    "Broj_strana": 298,
+    "Godina": 2021,
+    "Cena": 569.99,
+    "Kategorija": "Sport"
   }
 ]
