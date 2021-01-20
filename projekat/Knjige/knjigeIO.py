@@ -7,7 +7,7 @@ def sacuvaj_knjige(knjige):
         json.dump(knjige,f)
 
 def ucitaj_knjige():
-    with open("../datoteke/knjige.json", "r") as f:
+    with open(datoteka, "r") as f:
             return json.load(f)
 
-
+ucitaj_knjige()
