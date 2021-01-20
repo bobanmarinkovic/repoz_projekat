@@ -1,0 +1,23 @@
+[
+  {
+  "Korisnicko_ime": "marinkovicb",
+  "Lozinka": "boban123",
+  "Ime": '"Boban",
+  "Prezime": "Marinkovic",
+  "Tip_korisnika": "Administrator"
+  },
+  {
+    "Korisnicko_ime": "petarp",
+    "Lozinka": "petar123",
+    "Ime": "Petar",
+    "Prezime": "Petrovic",
+    "Tip_korisnika": "Prodavac"
+  },
+  {
+  "Korisnicko_ime": "lukal",
+  "Lozinka": "luka123",
+  "Ime": "Luka",
+  "Prezime": "Lukic",
+  "Tip_korisnika": "Menadzer"
+  }
+]
