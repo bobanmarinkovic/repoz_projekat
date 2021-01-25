@@ -1,0 +1,9 @@
+[
+  {"Sifra": 1,
+    "Prodavac": "petarp",
+    "Knjige": {
+      "Sifra": 111, "Naslov": "q", "Isbn": 23124, "Autor": "Nikola Lukic", "Izdavac": "Vulkan", "Broj_strana": 420, "Godina": 2001, "Cena": 1000, "Kategorija": "Komedija","Kolicina": 3,"Jedinicna_cena": 3000.00
+    },
+    "Datum": "2020-01-24"
+  }
+]
