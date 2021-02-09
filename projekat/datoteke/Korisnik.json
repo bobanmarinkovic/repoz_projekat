@@ -1,4 +1,1 @@
-[{"Korisnicko_ime": "m", "Lozinka": "b", "Ime": "Boban", "Prezime": "Marinkovic", "Tip_korisnika": "Administrator"},
-  {"Korisnicko_ime": "petarp", "Lozinka": "petar123", "Ime": "Petar", "Prezime": "Petrovic", "Tip_korisnika": "Prodavac"},
-  {"Korisnicko_ime": "lukal", "Lozinka": "luka123", "Ime": "Luka", "Prezime": "Lukic", "Tip_korisnika": "Menadzer"},
-  {"Korisnicko_ime": "stefans", "Lozinka": "stefan123", "Ime": "Stefan", "Prezime": "Simic", "Tip_korisnika": "Menadzer"}]
+[{"Korisnicko_ime": "m", "Lozinka": "b", "Ime": "Boban", "Prezime": "Marinkovic", "Tip_korisnika": "Administrator"}, {"Korisnicko_ime": "p", "Lozinka": "p", "Ime": "Petar", "Prezime": "Petrovic", "Tip_korisnika": "Prodavac"}, {"Korisnicko_ime": "lukal", "Lozinka": "luka123", "Ime": "Luka", "Prezime": "Lukic", "Tip_korisnika": "Menadzer"}, {"Korisnicko_ime": "stefans", "Lozinka": "stefan123", "Ime": "Stefan", "Prezime": "Simic", "Tip_korisnika": "Menadzer"}, {"Korisnicko_ime": "pr", "Lozinka": "pr", "Ime": "Mihajlo", "Prezime": "Tomic", "Tip_korisnika": "Prodavac"}, {"Korisnicko_ime": "lana", "Lozinka": "lana123", "Ime": "Lana", "Prezime": "Maric", "Tip_korisnika": "Menadzer"}]
