@@ -1,4 +1,5 @@
 from repoz_projekat.projekat.kcije.AkcijeIO import ucitaj_akcije, sacuvaj_akcije
+from repoz_projekat.projekat.Knjige.knjigeIO import ucitaj_knjige
 
 from datetime import date
 
@@ -31,8 +32,12 @@ def po_datumu():
     brojac=0
     for m in x:
         if m["Datum"] > str(vreme):
-            brojac=brojac+1
-            print(m["Knjige_i_njihove_nove_cene"])
+            print("\n\tU ponudi imamo knjige sa akcijskom sifrom ", m["Sifra"])
+        for l in m["Knjige_i_njihove_nove_cene"]:
+            if m["Datum"] > str(vreme):
+
+                brojac=brojac+1
+                print(l["Sifra"], l["Naslov"], l["Autor"], l["Izdavac"], l["Cena"], m["Datum"])
 
     if brojac==0:
         print("Nemamo trenutno aktivnih akcija")
@@ -49,8 +54,11 @@ def po_sifri():
     brojac = 0
     for m in x:
         if m["Datum"] > str(vreme):
-            brojac = brojac + 1
-            print(m["Knjige_i_njihove_nove_cene"])
+            print("\n\tU ponudi imamo knjige sa akcijskom sifrom ", m["Sifra"])
+        for l in m["Knjige_i_njihove_nove_cene"]:
+            if m["Datum"] > str(vreme):
+                brojac = brojac + 1
+                print(l["Sifra"], l["Naslov"], l["Autor"], l["Izdavac"], l["Cena"], m["Datum"])
 
     if brojac == 0:
         print("Nemamo trenutno aktivnih akcija")
@@ -143,24 +151,24 @@ def pretraga_po_sifri():
 def kreiranje_akcijske_ponude():
     akcije=ucitaj_akcije()
     knjige=[]
+    knj=ucitaj_knjige()
 
-    print("\tUnesite podatke o knjizi")
+
     while True:
-        s = int(input("\nUnesite sifru nove knjige: "))
-        for z in akcije:
-            r=z["Knjige_i_njihove_nove_cene"]
-            for q in r:
-                if z["Sifra"] == s:
-                    print("Knjiga sa tom sifrom je vec uneta")
-                    return None
-        n = input("Unesite naslov:")
-        isbn = int(input("Unesite isbn: "))
-        a = input("Unesite autora: ")
-        i = input("Unesite izdavaca: ")
-        br = int(input("Unesite broj strana: "))
-        g = int(input("Unesite godinu izdavanja: "))
-        c = float(input("Unesite cenu: "))
-        k = input("Unesite kategoriju: ")
+        s = int(input("\nUnesite sifru knjige koju zelite da stavite na akciju: "))
+        for q in knj:
+
+                if q["Sifra"]==s:
+
+
+                    n = q["Naslov"]
+                    isbn = q["Isbn"]
+                    a = q["Autor"]
+                    i = q["Izdavac"]
+                    br = q["Broj_strana"]
+                    g = q["Godina"]
+                    c = float(input("Unesite sniyenu cenu knjige: "))
+                    k = q["Kategorija"]
 
         novaknjiga = {
             "Sifra": s,
@@ -199,5 +207,6 @@ def kreiranje_akcijske_ponude():
         }
     akcije.append(akcijska_ponuda)
     sacuvaj_akcije(akcije)
+    print("Uspesno ste uneli akcijsku ponudu!")
 
 
