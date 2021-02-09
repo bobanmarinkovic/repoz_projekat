@@ -24,9 +24,9 @@ def prikaz_svih_knjiga():
         return None
     else:
         print("Izabrali ste nepostojecu opciju")
-
+    print("Sifra   Naslov       Autor         Izdavac       Cena   Kategorija    Log.Brisanje")
     for knjiga in knjige:
-        print(knjiga)
+        print(knjiga["Sifra"],"   ", knjiga["Naslov"],"      ", knjiga["Autor"], knjiga["Izdavac"], knjiga["Cena"], knjiga["Kategorija"])
 
 def po_naslovu_knjige():
     x = ucitaj_knjige()
@@ -37,7 +37,9 @@ def po_naslovu_knjige():
                 z = x[i]["Naslov"]
                 x[i]["Naslov"] = x[j]["Naslov"]
                 x[j]["Naslov"] = z
+
     return x
+
 def po_kategoriji():
     x = ucitaj_knjige()
     z = 0
@@ -166,106 +168,161 @@ def pretraga_po_opsegucene():
     return lista
 def dodavanje_knjige():
     knjige=ucitaj_knjige()
-    s=int(input("Unesite sifru nove knjige: "))
-    for z in knjige:
-        if z["Sifra"] == s:
-            print("Knjiga sa tom sifrom je vec uneta")
-            return None
-    n=input("Unesite naslov:")
-    isbn=int(input("Unesite isbn: "))
-    a=input("Unesite autora: ")
-    i=input("Unesite izdavaca: ")
-    br=int(input("Unesite broj strana: "))
-    g=int(input("Unesite godinu izdavanja: "))
-    c=float(input("Unesite cenu: "))
-    k=input("Unesite kategoriju: ")
+    while True:
+        s=int(input("Unesite sifru nove knjige: "))
+        for z in knjige:
+            if z["Sifra"] == s:
+                print("Knjiga sa tom sifrom je vec uneta")
+                return None
+        n=input("Unesite naslov:")
+        isbn=int(input("Unesite isbn: "))
+        a=input("Unesite autora: ")
+        i=input("Unesite izdavaca: ")
+        br=int(input("Unesite broj strana: "))
+        g=int(input("Unesite godinu izdavanja: "))
+        c=float(input("Unesite cenu: "))
+        k=input("Unesite kategoriju: ")
 
-    novaknjiga={
-        "Sifra": s,
-        "Naslov": n,
-        "Isbn": isbn,
-        "Autor": a,
-        "Izdavac": i,
-        "Broj_strana": br,
-        "Godina": g,
-        "Cena": c,
-        "Kategorija": k
+        novaknjiga={
+            "Sifra": s,
+            "Naslov": n,
+            "Isbn": isbn,
+            "Autor": a,
+            "Izdavac": i,
+            "Broj_strana": br,
+            "Godina": g,
+            "Cena": c,
+            "Kategorija": k,
+            "Obrisano": "Nije obrisano"
+
+        }
+        knjige.append(novaknjiga)
+        sacuvaj_knjige(knjige)
+        print("Uspesno ste dodali knjigu!")
+        print("\nDa li zelite da nastavite sa dodavanjem knjiga?"
+              "\n1. DA"
+              "\n2. NE")
+        while True:
+            opcija=int(input("Unesite zeljenu opciju: "))
+            if opcija==2:
+                return None
+
+            elif opcija==1:
+                break
+            else:
+                print("Izabrali ste nepostojecu opciju, pokusajte ponovo")
 
 
-    }
-    knjige.append(novaknjiga)
-    sacuvaj_knjige(knjige)
+
 
 
 
 def izmena_knjige():
 
-
-    sifra=int(input("Unesite sifru knjige koju zelite da izemnite: "))
-    knjige = ucitaj_knjige()
-    brojac=0
-    akcije=ucitaj_akcije()
-    for i in knjige:
-        if i["Sifra"] == sifra:
-                brojac=brojac+1
-                n=input("Unesite novi naslov: ")
-                if n == "":
-                    i["Naslov"]=i["Naslov"]
-
-
-                else:
-                    i["Naslov"]=n
-                isbn = int(input("Unesite novi isbn, ukoliko zelite da isbn ostene ne promenjen pritisnit 0: "))
-                if isbn == 0:
-                    i["Isbn"] = i["Isbn"]
+    while True:
+        sifra=int(input("Unesite sifru knjige koju zelite da izemnite: "))
+        knjige = ucitaj_knjige()
+        brojac=0
+        akcije=ucitaj_akcije()
+        for i in knjige:
+            if i["Sifra"] == sifra:
+                    brojac=brojac+1
+                    n=input("Unesite novi naslov: ")
+                    if n == "":
+                        i["Naslov"]=i["Naslov"]
 
 
-                else:
-                    i["Isbn"] = isbn
-                a= input("Unesite novog autora: ")
-                if a == "":
-                    i["Autor"] = i["Autor"]
-
-                else:
-                    i["Autor"] = a
-                iz = input("Unesite novog izdavaca: ")
-                if iz == "":
-                    i["Izdavac"] = i["Izdavac"]
-
-                else:
-                    i["Izdavac"] = iz
-                b = int(input("Unesite novi broj strana, ukoliko zelite da broj strana ostane nepromenjen pristite 0: "))
-                if b == 0:
-                    i["Broj_strana"] = i["Broj_strana"]
-
-                else:
-                    i["Broj_strana"] = b
-                g = int(input("Unesite novu godinu, ukoliko zelite da godina ostene nepromenjena unesite 0: "))
-                if g == 0:
-                    i["Godina"] = i["Godina"]
-
-                else:
-                    i["Godina"] = g
-                c = float(input("Unesite novu cenu, ukoliko zelite da cena ostane nepromenjena uneite 0: "))
-                if c == 0:
-                    i["Cena"] = i["Cena"]
-
-                else:
-                    i["Cena"] = c
-                k = input("Unesite novu kategoriju: ")
-                if k == "":
-                    i["Kategorija"] = i["Kategorija"]
-
-                else:
-                    i["Kategorija"] = k
+                    else:
+                        i["Naslov"]=n
+                    isbn = int(input("Unesite novi isbn, ukoliko zelite da isbn ostene ne promenjen pritisnit 0: "))
+                    if isbn == 0:
+                        i["Isbn"] = i["Isbn"]
 
 
-    if brojac==0:
-        print("Uneli ste pogresnu sifru probajte ponovo!")
+                    else:
+                        i["Isbn"] = isbn
+                    a= input("Unesite novog autora: ")
+                    if a == "":
+                        i["Autor"] = i["Autor"]
+
+                    else:
+                        i["Autor"] = a
+                    iz = input("Unesite novog izdavaca: ")
+                    if iz == "":
+                        i["Izdavac"] = i["Izdavac"]
+
+                    else:
+                        i["Izdavac"] = iz
+                    b = int(input("Unesite novi broj strana, ukoliko zelite da broj strana ostane nepromenjen pristite 0: "))
+                    if b == 0:
+                        i["Broj_strana"] = i["Broj_strana"]
+
+                    else:
+                        i["Broj_strana"] = b
+                    g = int(input("Unesite novu godinu, ukoliko zelite da godina ostene nepromenjena unesite 0: "))
+                    if g == 0:
+                        i["Godina"] = i["Godina"]
+
+                    else:
+                        i["Godina"] = g
+                    c = float(input("Unesite novu cenu, ukoliko zelite da cena ostane nepromenjena uneite 0: "))
+                    if c == 0:
+                        i["Cena"] = i["Cena"]
+
+                    else:
+                        i["Cena"] = c
+                    k = input("Unesite novu kategoriju: ")
+                    if k == "":
+                        i["Kategorija"] = i["Kategorija"]
+
+                    else:
+                        i["Kategorija"] = k
+
+
+        if brojac==0:
+            print("Uneli ste pogresnu sifru probajte ponovo!")
+
+        sacuvaj_knjige(knjige)
+        print("Uspesno ste izmenili knjigu!")
+        print("\nDa li zelite da nastavite sa izmenom knjiga?"
+              "\n1. DA"
+              "\n2. NE")
+        while True:
+            opcija = int(input("Unesite zeljenu opciju: "))
+            if opcija == 2:
+                return None
+
+            elif opcija == 1:
+                break
+            else:
+                print("Izabrali ste nepostojecu opciju, pokusajte ponovo")
+
+def logicko_brisanje_knjige():
+    while True:
+        k=ucitaj_knjige()
+        sifra=int(input("Unesite sifru knjige koju zelite da obriste: "))
+        for i in k:
+
+            if i["Sifra"]==sifra:
+                i["Obrisano"]="Obrisano"
+        sacuvaj_knjige(k)
+        print("Obrisali ste knjigu!")
+        print("\nDa li zelite da nastavite sa brisanjem knjiga?"
+              "\n1. DA"
+              "\n2. NE")
+        while True:
+            opcija = int(input("Unesite zeljenu opciju: "))
+            if opcija == 2:
+                return None
+
+            elif opcija == 1:
+                break
+            else:
+                print("Izabrali ste nepostojecu opciju, pokusajte ponovo")
 
 
 
-    sacuvaj_knjige(knjige)
+
 
 
 
