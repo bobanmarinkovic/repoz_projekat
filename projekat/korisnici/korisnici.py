@@ -23,7 +23,11 @@ def registracija():
     l=input("Unesite zeljenu lozinku: ")
     i=input("Unesite ime: ")
     p=input("Unesite prezime: ")
-    m = input("Unesite da li je novi korisnik  menadzer (unosenjem broja 1), prodavac (unosenjem broja 2) ili nesto drugo (unosenjem broja 3): ")
+    m = int(input("Unesite da li je novi korisnik:"
+                  "\n1.Menadzer"
+                  "\n2.Prodavac "
+                  "\n3.Nista od navedenog"
+                  "\n"))
 
 
     if m==1:
@@ -51,7 +55,7 @@ def registracija():
     s=ucitaj_korisnike()
     s.append(novikorisnik)
     sacuvaj_korisnike(s)
-
+    print("Uspesno ste uneli korisnika.")
 def prikaz_svih_korisnika():
     print("1.) Sortirajte po imenu")
     print("2.) Sortirajte po prezimenu")
