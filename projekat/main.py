@@ -5,10 +5,12 @@ from repoz_projekat.projekat.korisnici.korisnici import registracija
 from repoz_projekat.projekat.korisnici.korisnici import prikaz_svih_korisnika
 from repoz_projekat.projekat.Knjige.knjige import izmena_knjige
 from repoz_projekat.projekat.Knjige.knjige import dodavanje_knjige
-from repoz_projekat.projekat.Knjige.knjige import prodaja_knjiga
 from repoz_projekat.projekat.kcije.Akcije import Prikaz_akcija
 from repoz_projekat.projekat.kcije.Akcije import pretraga_akcija
 from repoz_projekat.projekat.kcije.Akcije import kreiranje_akcijske_ponude
+from repoz_projekat.projekat.Knjige.knjige import logicko_brisanje_knjige
+from repoz_projekat.projekat.racun.racun import prodaja_knjiga
+from repoz_projekat.projekat.racun.racun import kreiranje_izvestaja
 
 def Prijava():
     x= prijava()
