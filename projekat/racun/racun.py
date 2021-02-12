@@ -113,7 +113,7 @@ def prodaja_knjiga():
                         cena1=cena1+v["Cena"]
                         ukcena=ukcena+kolicina*cena1
                         prodataknjiga = {
-
+                            "Sifra_akcije":x,
                             "Sifra": v["Sifra"],
                             "Naslov": v["Naslov"],
                             "Autor": v["Autor"],
@@ -123,8 +123,8 @@ def prodaja_knjiga():
                         }
 
 
-                    korpa.append(o)
-                    prodato.append(prodataknjiga)
+                        korpa.append(o)
+                        prodato.append(prodataknjiga)
             m = int(input("Da li zelite da pogledate trenutno stanje korpe i zavrsite kupovinu?"
                           "\n1. DA"
                           "\n2. NE"))
@@ -175,55 +175,200 @@ def prodaja_knjiga():
 
 
 def kreiranje_izvestaja():
-    knjige=ucitaj_knjige()
-    racun=ucitaj_racun()
-    akcije=ucitaj_akcije()
-    print("Izaberite tip izvstaja:"
-          "\n1. Ukupna prodaja svih kniga"
-          "\n2. Ukupna prodaja svih akcija"
-          "\n3. Ukupna prodaja knjiga odobranog autora"
-          "\n4. Ukupna prodaja svih knjiga odabranog izdavaca"
-          "\n5. Ukupna prodaja svih knjiga odabranog kategorije")
-    x=int(input("Izaberite zeljenu opciju: "))
-    if x== 1:
-        print("\nSifra   Naslov    Autor      Izdavac    Kategorija    Kolicina     Zarada")
-        for j in knjige:
-            prodatakolicina=0
-            zarada=float(0)
-            for i in racun:
-                for l in i["Knjige"]:
-                    if l["Sifra"]==j["Sifra"]:
-                        prodatakolicina=l["Kolicina"]+prodatakolicina
+    while True:
+        knjige=ucitaj_knjige()
+        racun=ucitaj_racun()
+        akcije=ucitaj_akcije()
+        print("Izaberite tip izvstaja:"
+              "\n1. Ukupna prodaja svih kniga"
+              "\n2. Ukupna prodaja svih akcija"
+              "\n3. Ukupna prodaja knjiga odobranog autora"
+              "\n4. Ukupna prodaja svih knjiga odabranog izdavaca"
+              "\n5. Ukupna prodaja svih knjiga odabranog kategorije"
+              "\n6. Izlaz")
 
-                        zarada=l["Jedinicna_cena"]*l["Kolicina"]+zarada
-
-            print(j["Sifra"],j["Naslov"], j["Autor"], j["Izdavac"], j["Kategorija"], prodatakolicina, zarada)
-    elif x==2:
-        print("\nSifra   Naslov    Autor      Izdavac    Kategorija    Kolicina     Zarada")
-        for i in akcije:
-            prk = 0
-            zar = 0
-            for s in i["Knjige_i_njihove_nove_cene"]:
-
-                for j in racun:
-                    if j["Akcija"]==1:
-                        for l in j["Knjige"]:
-                            if l["Sifra"]==s["Sifra"]:
-                                prk=l["Kolicina"]+prk
-                                zar=zar+l["Jedinicna_cena"]*prk
-            print(i["Sifra"], prk, zar, j["Akcija"])
-    elif x==3:
-        lista=[]
-        autor=input("Unesite autor: ")
-        print("\nSifra   Naslov    Autor      Izdavac    Kategorija    Kolicina     Zarada")
-        prodatakolicina = 0
-        zarada = float(0)
-        for j in knjige:
-            for i in racun:
-                for l in i["Knjige"]:
-                    if l["Autor"].lower() == autor.lower():
-                       print("Ne sitezm da zavisim :(")
+        x=int(input("Izaberite zeljenu opciju: "))
+        if x== 1:
+            print("\nSifra      Naslov                  Autor                   Izdavac                 Kategorija         Kolicina          Zarada")
+            print("_____________________________________________________________________________________________________________________________")
+            for j in knjige:
+                prodatakolicina=0
+                zarada=float(0)
+                for i in racun:
+                    for l in i["Knjige"]:
+                        if l["Sifra"]==j["Sifra"]:
+                            prodatakolicina=l["Kolicina"]+prodatakolicina
 
 
+                            zarada=l["Jedinicna_cena"]*l["Kolicina"]+zarada
+                q=" "*(8-len(str(j["Sifra"])))
+                w=" "*(20-len(j["Naslov"]))
+                e=" "*(20-len(j["Autor"]))
+                r=" "*(20-len(j["Izdavac"]))
+                t=" "*(15-len(j["Kategorija"]))
+                y=" "*(15-len(str(prodatakolicina)))
+                print(j["Sifra"],q,"|",j["Naslov"],w,"|", j["Autor"],e,"|", j["Izdavac"],r,"|", j["Kategorija"],t,"|", prodatakolicina,y,"|", zarada)
+        elif x==2:
+            while True:
 
+                d = 1
+                print(
+                    "\nSifra      Naslov                  Autor                   Izdavac                 Kategorija         Kolicina          Zarada")
+                print(
+                    "_____________________________________________________________________________________________________________________________")
+                for j in knjige:
+
+                            prodatakolicina = 0
+                            zarada = float(0)
+                            for i in racun:
+                                if i["Akcija"]==1:
+                                    for l in i["Knjige"]:
+                                        if l["Sifra"] == j["Sifra"]:
+                                            prodatakolicina = l["Kolicina"] + prodatakolicina
+
+                                            zarada = l["Jedinicna_cena"] * l["Kolicina"] + zarada
+
+                            q = " " * (8 - len(str(j["Sifra"])))
+                            w = " " * (20 - len(j["Naslov"]))
+                            e = " " * (20 - len(j["Autor"]))
+                            r = " " * (20 - len(j["Izdavac"]))
+                            t = " " * (15 - len(j["Kategorija"]))
+                            y = " " * (15 - len(str(prodatakolicina)))
+                            print(j["Sifra"], q, "|", j["Naslov"], w, "|", j["Autor"], e, "|", j["Izdavac"], r, "|",
+                                  j["Kategorija"], t, "|", prodatakolicina, y, "|", zarada)
+                            d = 0
+
+
+
+
+        elif x==3:
+            while True:
+                autor=input("Unesite autora knjige: ")
+                d=1
+                print(
+                    "\nSifra      Naslov                  Autor                   Izdavac                 Kategorija         Kolicina          Zarada")
+                print(
+                    "_____________________________________________________________________________________________________________________________")
+                for j in knjige:
+                    if j["Autor"].lower()==autor.lower():
+                        prodatakolicina = 0
+                        zarada = float(0)
+                        for i in racun:
+                            for l in i["Knjige"]:
+                                if l["Sifra"] ==j["Sifra"]:
+                                    prodatakolicina = l["Kolicina"] + prodatakolicina
+
+                                    zarada = l["Jedinicna_cena"] * l["Kolicina"] + zarada
+
+                        q = " " * (8 - len(str(j["Sifra"])))
+                        w = " " * (20 - len(j["Naslov"]))
+                        e = " " * (20 - len(j["Autor"]))
+                        r = " " * (20 - len(j["Izdavac"]))
+                        t = " " * (15 - len(j["Kategorija"]))
+                        y = " " * (15 - len(str(prodatakolicina)))
+                        print(j["Sifra"], q, "|", j["Naslov"], w, "|", j["Autor"], e, "|", j["Izdavac"], r, "|",
+                              j["Kategorija"], t, "|", prodatakolicina, y, "|", zarada)
+                        d=0
+
+                if d==1:
+                    print("Nemamo knjige tog autora na stanju!")
+                print("Da li zelite da nastavite?"
+                      "\n 1. DA"
+                      "\n 2. NE")
+                opcija=int(input("Unesite zeljenu opciju: "))
+                if opcija==1:
+                    continue
+                elif opcija==2:
+                    return None
+                else:
+                    print("Izabrali ste nepostojecu opciju, pokusajte ponovo.")
+
+
+        elif x==4:
+            while True:
+                autor=input("Unesite izdavaca knjige: ")
+                d=1
+                print(
+                    "\nSifra      Naslov                  Autor                   Izdavac                 Kategorija         Kolicina          Zarada")
+                print(
+                    "_____________________________________________________________________________________________________________________________")
+                for j in knjige:
+                    if j["Izdavac"].lower()==autor.lower():
+                        prodatakolicina = 0
+                        zarada = float(0)
+                        for i in racun:
+                            for l in i["Knjige"]:
+                                if l["Sifra"] ==j["Sifra"]:
+                                    prodatakolicina = l["Kolicina"] + prodatakolicina
+
+                                    zarada = l["Jedinicna_cena"] * l["Kolicina"] + zarada
+
+                        q = " " * (8 - len(str(j["Sifra"])))
+                        w = " " * (20 - len(j["Naslov"]))
+                        e = " " * (20 - len(j["Autor"]))
+                        r = " " * (20 - len(j["Izdavac"]))
+                        t = " " * (15 - len(j["Kategorija"]))
+                        y = " " * (15 - len(str(prodatakolicina)))
+                        print(j["Sifra"], q, "|", j["Naslov"], w, "|", j["Autor"], e, "|", j["Izdavac"], r, "|",
+                              j["Kategorija"], t, "|", prodatakolicina, y, "|", zarada)
+                        d=0
+
+                if d==1:
+                    print("Nemamo knjige tog izdavaca na stanju!")
+                print("Da li zelite da nastavite?"
+                      "\n 1. DA"
+                      "\n 2. NE")
+                opcija=int(input("Unesite zeljenu opciju: "))
+                if opcija==1:
+                    continue
+                elif opcija==2:
+                    return None
+                else:
+                    print("Izabrali ste nepostojecu opciju, pokusajte ponovo.")
+        elif x==5:
+            while True:
+                autor=input("Unesite kategoriju knjige: ")
+                d=1
+                print(
+                    "\nSifra      Naslov                  Autor                   Izdavac                 Kategorija         Kolicina          Zarada")
+                print(
+                    "_____________________________________________________________________________________________________________________________")
+                for j in knjige:
+                    if j["Kategorija"].lower()==autor.lower():
+                        prodatakolicina = 0
+                        zarada = float(0)
+                        for i in racun:
+                            for l in i["Knjige"]:
+                                if l["Sifra"] ==j["Sifra"]:
+                                    prodatakolicina = l["Kolicina"] + prodatakolicina
+
+                                    zarada = l["Jedinicna_cena"] * l["Kolicina"] + zarada
+
+                        q = " " * (8 - len(str(j["Sifra"])))
+                        w = " " * (20 - len(j["Naslov"]))
+                        e = " " * (20 - len(j["Autor"]))
+                        r = " " * (20 - len(j["Izdavac"]))
+                        t = " " * (15 - len(j["Kategorija"]))
+                        y = " " * (15 - len(str(prodatakolicina)))
+                        print(j["Sifra"], q, "|", j["Naslov"], w, "|", j["Autor"], e, "|", j["Izdavac"], r, "|",
+                              j["Kategorija"], t, "|", prodatakolicina, y, "|", zarada)
+                        d=0
+
+                if d==1:
+                    print("Nemamo knjige te kategorije na stanju!")
+                print("Da li zelite da nastavite?"
+                      "\n 1. DA"
+                      "\n 2. NE")
+                opcija=int(input("Unesite zeljenu opciju: "))
+                if opcija==1:
+                    continue
+                elif opcija==2:
+                    return None
+                else:
+                    print("Izabrali ste nepostojecu opciju, pokusajte ponovo.")
+
+        elif x==6:
+            return None
+        else:
+            print("Izabrali ste ne postojecu opciju!")
 
