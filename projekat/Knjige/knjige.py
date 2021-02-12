@@ -1,32 +1,94 @@
 from repoz_projekat.projekat.Knjige.knjigeIO import ucitaj_knjige, sacuvaj_knjige
 from repoz_projekat.projekat.kcije.AkcijeIO import sacuvaj_akcije,ucitaj_akcije
+def prikaz_svih_knjigaA():
+    while True:
+        print('\n1.) Sortirajte po naslovu knjige')
+        print('2.) Sortirajte po kategoriji')
+        print('3.) Sortirajte po autoru')
+        print('4.) Sortirajte po izdavacu')
+        print('5.) Sortirajte po ceni')
+        print('6.) Izlaz')
+
+        m = int(input('\tIzaberte opciju:'))
+        b=0
+        if m == 1:
+            knjige = po_naslovu_knjige()
+            b=1
+        elif m == 2:
+            knjige = po_kategoriji()
+            b=1
+
+        elif m == 3:
+            knjige = po_autoru()
+            b=1
+        elif m == 4:
+            knjige = po_izdavacu()
+            b=1
+        elif m == 5:
+            knjige = po_ceni()
+            b=1
+        elif m == 6:
+            return None
+        else:
+            print("Izabrali ste nepostojecu opciju, pokusajte ponovo!")
+        if b==1:
+            print(
+                "Sifra      Naslov                Autor                   Izdavac                 Cena          Kategorija     Log.Brisanje ")
+            print("_________________________________________________________________________________________________________________________")
+            for knjiga in knjige:
+                sif = str(knjiga["Sifra"])
+                k = " " * (7 - len(sif))
+                p = " " * int((20 - len(knjiga["Naslov"])))
+                l = " " * (20 - len(knjiga["Autor"]))
+                g = " " * (20 - len(knjiga["Izdavac"]))
+                c = " " * (10 - len(str(knjiga["Cena"])))
+                s= " "*(10-len(knjiga["Kategorija"]))
+                print(knjiga["Sifra"], k,"|", knjiga["Naslov"], p,"|", knjiga["Autor"], l,"|", knjiga["Izdavac"], g,"|", knjiga["Cena"], c,"|",
+                      knjiga["Kategorija"],s,"|",knjiga["Obrisano"])
 def prikaz_svih_knjiga():
-    print('1.) Sortirajte po naslovu knjige')
-    print('2.) Sortirajte po kategoriji')
-    print('3.) Sortirajte po autoru')
-    print('4.) Sortirajte po izdavacu')
-    print('5.) Sortirajte po ceni')
-    print('6.) Izlaz')
+    while True:
+        print('\n1.) Sortirajte po naslovu knjige')
+        print('2.) Sortirajte po kategoriji')
+        print('3.) Sortirajte po autoru')
+        print('4.) Sortirajte po izdavacu')
+        print('5.) Sortirajte po ceni')
+        print('6.) Izlaz')
 
-    m = int(input('Izaberte opciju:'))
-    if m == 1:
-        knjige = po_naslovu_knjige()
-    elif m == 2:
-        knjige = po_kategoriji()
+        m = int(input('\tIzaberte opciju:'))
+        b=0
+        if m == 1:
+            knjige = po_naslovu_knjige()
+            b=1
+        elif m == 2:
+            knjige = po_kategoriji()
+            b=1
 
-    elif m == 3:
-        knjige = po_autoru()
-    elif m == 4:
-        knjige = po_izdavacu()
-    elif m == 5:
-        knjige = po_ceni()
-    elif m == 6:
-        return None
-    else:
-        print("Izabrali ste nepostojecu opciju")
-    print("Sifra   Naslov       Autor         Izdavac       Cena   Kategorija    Log.Brisanje")
-    for knjiga in knjige:
-        print(knjiga["Sifra"],"   ", knjiga["Naslov"],"      ", knjiga["Autor"], knjiga["Izdavac"], knjiga["Cena"], knjiga["Kategorija"])
+        elif m == 3:
+            knjige = po_autoru()
+            b=1
+        elif m == 4:
+            knjige = po_izdavacu()
+            b=1
+        elif m == 5:
+            knjige = po_ceni()
+            b=1
+        elif m == 6:
+            return None
+        else:
+            print("Izabrali ste nepostojecu opciju, pokusajte ponovo!")
+        if b==1:
+            print(
+                "Sifra      Naslov                Autor                   Izdavac                 Cena          Kategorija")
+            print("________________________________________________________________________________________________________")
+            for knjiga in knjige:
+                sif = str(knjiga["Sifra"])
+                k = " " * (7 - len(sif))
+                p = " " * int((20 - len(knjiga["Naslov"])))
+                l = " " * (20 - len(knjiga["Autor"]))
+                g = " " * (20 - len(knjiga["Izdavac"]))
+                c = " " * (10 - len(str(knjiga["Cena"])))
+                print(knjiga["Sifra"], k,"|", knjiga["Naslov"], p,"|", knjiga["Autor"], l,"|", knjiga["Izdavac"], g,"|", knjiga["Cena"], c,"|",
+                      knjiga["Kategorija"])
 
 def po_naslovu_knjige():
     x = ucitaj_knjige()
@@ -34,9 +96,9 @@ def po_naslovu_knjige():
     for i in range(len(x)):
         for j in range(len(x)):
             if x[i]["Naslov"] < x[j]["Naslov"]:
-                z = x[i]["Naslov"]
-                x[i]["Naslov"] = x[j]["Naslov"]
-                x[j]["Naslov"] = z
+                z = x[i]
+                x[i] = x[j]
+                x[j] = z
 
     return x
 
@@ -46,9 +108,9 @@ def po_kategoriji():
     for i in range(len(x)):
         for j in range(len(x)):
             if x[i]["Kategorija"] < x[j]["Kategorija"]:
-                z = x[i]["Kategorija"]
-                x[i]["Kategorija"] = x[j]["Kategorija"]
-                x[j]["Kategorija"] = z
+                z = x[i]
+                x[i] = x[j]
+                x[j] = z
     return x
 
 def po_autoru():
@@ -57,9 +119,9 @@ def po_autoru():
     for i in range(len(x)):
         for j in range(len(x)):
             if x[i]["Autor"] < x[j]["Autor"]:
-                z = x[i]["Autor"]
-                x[i]["Autor"] = x[j]["Autor"]
-                x[j]["Autor"] = z
+                z = x[i]
+                x[i] = x[j]
+                x[j] = z
     return x
 def po_izdavacu():
     x = ucitaj_knjige()
@@ -67,9 +129,9 @@ def po_izdavacu():
     for i in range(len(x)):
         for j in range(len(x)):
             if x[i]["Izdavac"] < x[j]["Izdavac"]:
-                z = x[i]["Izdavac"]
-                x[i]["Izdavac"] = x[j]["Izdavac"]
-                x[j]["Izdavac"] = z
+                z = x[i]
+                x[i] = x[j]
+                x[j] = z
     return x
 def po_ceni():
     x=ucitaj_knjige()
@@ -77,9 +139,9 @@ def po_ceni():
     for i in range(len(x)):
         for j in range(len(x)):
             if x[i]["Cena"] < x[j]["Cena"]:
-                z=x[i]["Cena"]
-                x[i]["Cena"]=x[j]["Cena"]
-                x[j]["Cena"]=z
+                z=x[i]
+                x[i]=x[j]
+                x[j]=z
 
     return x
 
@@ -97,40 +159,59 @@ def pks(kljuc ,vrednost):
 
 
 def pretrazi_knjige():
-    print("1.) Pretraga knjige po sifri")
-    print("2.) Pretraga knjige po naslovu")
-    print("3.) Pretraga knjige po autoru")
-    print("4.) Pretraga knjige po kategoriji")
-    print("5.) Pretraga knjige po izdavacu")
-    print("6.) Pretraga knjige po opsegu cene")
-    print("7.) Izlaz")
+    while True:
+        print("\n1.) Pretraga knjige po sifri")
+        print("2.) Pretraga knjige po naslovu")
+        print("3.) Pretraga knjige po autoru")
+        print("4.) Pretraga knjige po kategoriji")
+        print("5.) Pretraga knjige po izdavacu")
+        print("6.) Pretraga knjige po opsegu cene")
+        print("7.) Izlaz")
 
-    m= int(input("\nUnesite zeljenu opciju: "))
+        m= int(input("\nUnesite zeljenu opciju: "))
+        b=0
+        if m==1:
+            x = pretraga_po_sifri()
+            b=1
 
-    if m==1:
-        l = pretraga_po_sifri()
-        print(l)
-    elif m==2:
-        l= pretraga_po_naslovu()
+        elif m==2:
+            x= pretraga_po_naslovu()
+            b=1
 
-        print(l)
-    elif m==3:
-        l=pretraga_po_autoru()
-        print(l)
-    elif m==4:
-        l=pretraga_po_kategoriji()
-        print(l)
+        elif m==3:
+            x=pretraga_po_autoru()
+            b=1
+        elif m==4:
+            x=pretraga_po_kategoriji()
+            b=1
 
-    elif m==5:
-        l=pretraga_po_izdavacu()
-        print(l)
-    elif m==6:
-        l=pretraga_po_opsegucene()
-        print(l)
-    elif m==7:
-        return None
-    else:
-        print("Izabrali ste nepostojecu opciju")
+
+
+        elif m==5:
+            x=pretraga_po_izdavacu()
+            b=1
+        elif m==6:
+            x=pretraga_po_opsegucene()
+            b=1
+        elif m==7:
+            return None
+        else:
+            print("Izabrali ste nepostojecu opciju, pokusajte ponovo!")
+        if b==1:
+            print(
+                "Sifra      Naslov                Autor                   Izdavac                 Cena          Kategorija")
+            print(
+                "__________________________________________________________________________________________________________")
+            for knjiga in x:
+                sif = str(knjiga["Sifra"])
+                k = " " * (7 - len(sif))
+                p = " " * int((20 - len(knjiga["Naslov"])))
+                l = " " * (20 - len(knjiga["Autor"]))
+                g = " " * (20 - len(knjiga["Izdavac"]))
+                c = " " * (10 - len(str(knjiga["Cena"])))
+                print(knjiga["Sifra"], k, "|", knjiga["Naslov"], p, "|", knjiga["Autor"], l, "|", knjiga["Izdavac"], g, "|",
+                      knjiga["Cena"], c, "|",
+                      knjiga["Kategorija"])
 
 
 def pretraga_po_naslovu ():
@@ -143,7 +224,7 @@ def pretraga_po_autoru():
     return x
 def pretraga_po_kategoriji():
     m=input("Unesite kategoriju: ")
-    x=pks("Katregorija", m)
+    x=pks("Kategorija", m)
     return x
 def pretraga_po_izdavacu():
     autor=input("Unesite izdavaca: ")
@@ -277,13 +358,14 @@ def izmena_knjige():
 
                     else:
                         i["Kategorija"] = k
+                    print("\nUspesno ste izmenili knjigu!")
 
 
         if brojac==0:
             print("Uneli ste pogresnu sifru probajte ponovo!")
 
         sacuvaj_knjige(knjige)
-        print("Uspesno ste izmenili knjigu!")
+
         print("\nDa li zelite da nastavite sa izmenom knjiga?"
               "\n1. DA"
               "\n2. NE")
@@ -300,13 +382,19 @@ def izmena_knjige():
 def logicko_brisanje_knjige():
     while True:
         k=ucitaj_knjige()
+        brojac=0
         sifra=int(input("Unesite sifru knjige koju zelite da obriste: "))
         for i in k:
 
             if i["Sifra"]==sifra:
                 i["Obrisano"]="Obrisano"
+                print("Obrisali ste knjigu!")
+                brojac=1
+
+        if brojac==0:
+            print("Knjiga sa unetom sifrom nepostoji, pokusajte ponovo!")
+
         sacuvaj_knjige(k)
-        print("Obrisali ste knjigu!")
         print("\nDa li zelite da nastavite sa brisanjem knjiga?"
               "\n1. DA"
               "\n2. NE")
